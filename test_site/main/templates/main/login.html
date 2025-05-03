@@ -1,0 +1,23 @@
+{% extends 'main/layout.html' %}
+
+{% block title%}Авторизация{% endblock %}
+
+{% block content %}
+    <h1>
+        {% if info %}
+            Успешная регистрация!<br/>
+        {% endif %}
+        Вход в аккаунт
+    </h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.login }}<br/>
+        {{ form.password }}<br/>
+        <button type="submit">Войти</button>
+        <h2>
+            Ещё не с нами!?!?<br/>
+            <a href="{% url 'register_page' %}">Регистрируйся быстро!!!!</a>
+        </h2>
+        <span>{{ error }}</span>
+    </form>
+{% endblock %}
