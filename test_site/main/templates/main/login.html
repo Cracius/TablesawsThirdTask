@@ -1,23 +1,24 @@
 {% extends 'main/layout.html' %}
-
+{% load static %}
 {% block title%}Авторизация{% endblock %}
 
 {% block content %}
     <h1>
-        {% if info %}
-            Успешная регистрация!<br/>
+        {% if user %}
+        Польхователь {{user}} успешно зарегистрировался<br>
         {% endif %}
         Вход в аккаунт
     </h1>
-    <form method="POST">
+    <form id="log-form">
         {% csrf_token %}
-        {{ form.login }}<br/>
-        {{ form.password }}<br/>
+        <input type="text" name="username" placeholder="Логин" required><br>
+        <input type="password" name="pass" placeholder="Пароль" required><br>
         <button type="submit">Войти</button>
-        <h2>
-            Ещё не с нами!?!?<br/>
-            <a href="{% url 'register_page' %}">Регистрируйся быстро!!!!</a>
-        </h2>
-        <span>{{ error }}</span>
     </form>
+    <h2>
+        Ещё не с нами!?!?<br/>
+        <a href="{% url 'register_page' %}">Регистрируйся быстро!!!!</a>
+    </h2>
+    <h3 id="error_log"></h3>
+    <script src="{% static 'main/js/login.js' %}"></script>
 {% endblock %}

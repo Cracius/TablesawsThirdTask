@@ -64,13 +64,15 @@ WSGI_APPLICATION = 'test_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test',
+        'NAME': 'task2',
         'USER': 'root',
-        'PASSWORD': '123Don~Vermillion321',
+        'PASSWORD': '123',
         'HOST': 'localhost',
-        'PORT': '3306'
+        'PORT': '3306',
     }
 }
+
+AUTH_USER_MODEL = 'main.User'
 
 
 # Password validation
@@ -108,6 +110,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'main/static'
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
