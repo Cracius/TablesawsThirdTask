@@ -1,10 +1,11 @@
 {% extends 'main/layout.html' %}
 {% load static %}
 {% block title%}Регистрация{% endblock %}
+{% csrf_token %}
 
 {% block content %}
     <h1>Регистрация аккаунта</h1>
-    <form id="reg-form">
+    <form id="reg-form" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="text" name="username" placeholder="Логин" required><br>
         <input type="password" name="pass" placeholder="Пароль" required><br>
@@ -13,6 +14,8 @@
             <option value="Male">Мужской</option>
             <option value="Female">Женский</option>
         </select><br>
+        Ваша аватарка:
+        <input type="file" name="avatar" accept="image/*"><br>
         <button type="submit">Зарегистрироваться</button>
     </form>
     <h2><a href="{% url 'loging_page' %}">Обратно на раздел аутентификации</a></h2>

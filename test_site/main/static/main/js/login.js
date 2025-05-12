@@ -15,8 +15,16 @@ document.getElementById('log-form').addEventListener('submit', async function (e
         })
     });
 
-    const ans = await response.json();
-    document.getElementById('error_log').innerText = ans.inf;
+    const { status, inf } = await response.json();
+    switch (status)
+    {
+        case 'ok':
+            window.location.href = inf;
+            break;
+
+        case 'err':
+            document.getElementById('error_log').innerText = inf;
+    }
 });
 
 function getCookie(name)

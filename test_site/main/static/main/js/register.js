@@ -1,19 +1,9 @@
-document.getElementById('reg-form').addEventListener('submit', async function (e)
-{
+document.getElementById('reg-form').addEventListener('submit', async function (e) {
     e.preventDefault();
-    const { username, pass, gender } = e.target;
     const response = await fetch('/register/', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': getCookie('csrftoken')
-        },
-
-        body: JSON.stringify({
-            username: username.value,
-            password: pass.value,
-            gender: gender.value === 'Male'
-        })
+        headers: { 'X-CSRFToken': getCookie('csrftoken') },
+        body: new FormData(e.target)
     });
 
     const { status, inf } = await response.json();
